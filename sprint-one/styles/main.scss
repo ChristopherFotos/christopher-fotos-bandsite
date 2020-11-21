@@ -1,0 +1,352 @@
+@import 'fonts' ;
+@import 'font-variables';
+@import 'colors';
+@import 'mixins';
+
+
+div, section, article, footer {
+    padding: 0 16px;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.hero {
+    background-image: url('../assets/images/hero-img.jpg');
+    background-position: center;
+    background-size: cover;
+    height: 162px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+
+
+    @include tablet {
+        height: 45vh;
+    }
+
+    @include desktop {
+        height: 97vh;
+    }
+
+    &__header {
+        font-size: $size4;
+        font-family: $bold;
+        width: 75%;
+        color: white;
+        margin: 0;
+        padding-top: 12%;
+
+        @include tablet {
+            font-size: $size6;
+            line-height: 72px;
+            margin-top: 0;
+        }
+
+        @include desktop {
+            padding: 16% 12%;
+            font-size: $size7;
+            line-height: $size8;
+            width: 50%
+        }
+    }
+
+    &__header-container {
+        width: 100%;
+        height: 100%;
+        background-color: rgba($color: #000000, $alpha: 0.6);
+        position: relative;
+    }
+}
+
+.main-img {
+    width: 100%;
+}
+
+p {
+    font-size: $size1;
+    font-family: $regular;
+    color: #323232;
+}
+
+
+// Typography
+.logo {
+    margin: 16px 0;
+    padding-bottom: 8px;
+}
+
+.heading {
+    line-height: 48px;
+    font-family: $bold;
+    font-size: $size5;
+    color: #323232;
+    margin: 48px 0;
+    padding-left: 16px;
+
+    @include desktop {
+        padding-left: 12%
+    }
+
+    &--main {
+        color:white ;
+        font-family: $regular;
+    }
+
+    &--gallery {
+        font-family: $bold;
+    }
+}
+
+.subhead {
+    color: #323232;
+    font-family: $bold;
+    font-size: $size2;
+    line-height: 22px;
+
+    @include tablet {
+        font-size: $size3;
+    }
+
+    @include desktop {
+        font-size: $size4;
+    }
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    background-color:#323232;
+    align-items: center;
+    color: white;
+    padding-top: 16px;
+
+    @include tablet(){
+        padding-top: 16px;
+        padding-left: 16px;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-end;
+    }
+
+    @include desktop {
+        padding-left: 12%
+    }
+}
+
+//  Nav
+
+.nav {
+    width: 100%;
+    display: flex;
+   
+    &__list {
+        width: 100%;
+        display: flex;
+        list-style-type: none;
+        justify-content: space-around;
+        font-family: $regular;
+        padding: 0;
+        margin:0;
+
+        @include tablet(){
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+    }
+
+    &__item {
+        flex-grow: 1;
+        text-align: center;
+        padding-bottom: 16px;
+        font-size: $size1;
+        font-family: $regular;
+        &--active {
+            border-bottom: 4px solid white;
+        };
+
+        @include tablet(){
+            flex-grow: 0;
+            margin-left: 64px;
+        }
+
+        @include desktop(){
+            font-size: 16px
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $gray-1;
+    }
+}
+
+// Gallery
+
+.gallery{
+    background-color: $gray-1;
+    padding-top: 8px;
+
+    &__photo-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+
+        @include tablet {
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        @include desktop {
+            padding: 0 12%;
+        }
+    }
+
+    &__img {
+        object-fit: contain;
+        width: 100%;
+        margin-bottom: 16px;
+        filter: grayscale(100%);
+        transition-duration: 1s;
+
+        &:hover{
+            filter: grayscale(0);
+            background-size: 120%;
+            transition-duration: 1s;
+        }
+
+        @include tablet {
+            width: 32.3%;
+        }
+
+    }
+}
+
+// Main content
+
+.main-content {
+    @include desktop {
+        padding: 0 20%;
+    }
+}
+
+.main-article {
+    padding: 0;
+
+    @include tablet {
+        display: flex;
+    }
+
+    @include desktop {
+        font-size: 14px;
+        margin-top: 32px;
+        margin-bottom: 32px
+    }
+
+    &__text{
+        font-size: $size1;
+        line-height: $size3;
+
+        @include tablet {
+            margin-right: 15px
+        }
+
+        @include desktop {
+            font-size: 18px;
+            line-height: 32px;
+            margin-right: 32px
+        }
+    }
+}
+
+.quote {
+    width: 90%;
+    font-family: $bold;
+    font-size: $size3;
+    line-height: $size4;
+}
+
+.pagination {
+    font-family: $medium;
+    font-size: 16px;
+    margin-top: 32px;
+    margin-bottom: 72px;
+}
+
+// Footer
+
+.footer {
+    background-color: #323232;
+    color: white;
+    padding:16px 8px;
+
+    @include desktop {
+        padding-left: 12.8%
+    }
+
+    &__heading {
+        font-family: $bold;
+    }
+
+    &__get-in-touch {
+        padding: 0;
+        @include tablet {
+            display: flex;
+        }
+    }
+
+    &__contact-card {
+        color: white;
+    }
+
+    &__content {
+        padding: 0;
+        @include tablet {
+            display: flex;
+            justify-content: flex-start;
+            align-self: baseline;
+        }
+    }
+
+    &__contact-card {
+        padding: 0;
+        width: 75%;
+    }
+
+    &__text {
+        color: white;
+
+        @include desktop{
+            font-size: $size2;
+        }
+
+        &--bold {
+            font-family: $medium;
+        }
+    }
+
+    &__heading {
+        display: inline;
+        margin: 0;
+    }
+    &__socials {
+        display: inline;
+        @include tablet {
+            display: flex;
+            justify-content: space-between;
+            width: 100px;
+        }
+    }
+
+    .copyright {
+        color: white;
+    }
+}
+
+.wordmark {
+    display: none;
+}
