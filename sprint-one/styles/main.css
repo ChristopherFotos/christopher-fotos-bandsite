@@ -41,18 +41,18 @@ body, html {
 
 @media screen and (min-width: 768px) {
   .hero {
-    height: 45vh;
+    height: 70vh;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .hero {
     height: 97vh;
   }
 }
 
 .hero__header {
-  font-size: 32px;
+  font-size: 24px;
   font-family: "Avenir-Bold";
   width: 75%;
   color: white;
@@ -68,7 +68,7 @@ body, html {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .hero__header {
     padding: 16% 12%;
     font-size: 96px;
@@ -108,7 +108,7 @@ p {
   padding-left: 16px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .heading {
     padding-left: 12%;
   }
@@ -136,7 +136,7 @@ p {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .subhead {
     font-size: 32px;
   }
@@ -175,7 +175,7 @@ p {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .header {
     padding-left: 12%;
   }
@@ -220,6 +220,10 @@ p {
   padding-bottom: 16px;
   font-size: 13px;
   font-family: "Avenir-Regular";
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
 }
 
 .nav__item--active {
@@ -232,10 +236,12 @@ p {
         -ms-flex-positive: 0;
             flex-grow: 0;
     margin-left: 64px;
+    -webkit-transition-duration: 0.4s;
+            transition-duration: 0.4s;
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .nav__item {
     font-size: 16px;
   }
@@ -244,6 +250,29 @@ p {
 .nav__link {
   text-decoration: none;
   color: #FAFAFA;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+.nav__item:hover .nav__link {
+  -webkit-transform: scale(1.9);
+          transform: scale(1.9);
+  color: pink;
+  -webkit-animation: nav-item-hover-effect 0.3s linear infinite alternate;
+          animation: nav-item-hover-effect 0.3s linear infinite alternate;
+  -webkit-transition-duration: 0.4s;
+          transition-duration: 0.4s;
+}
+
+.nav .logo-link {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: end;
+      -ms-flex-align: end;
+          align-items: flex-end;
 }
 
 .gallery {
@@ -279,7 +308,7 @@ p {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .gallery__photo-container {
     padding: 0 12%;
   }
@@ -310,7 +339,7 @@ p {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .main-content {
     padding: 0 20%;
   }
@@ -328,7 +357,7 @@ p {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .main-article {
     font-size: 14px;
     margin-top: 32px;
@@ -347,7 +376,7 @@ p {
   }
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .main-article__text {
     font-size: 18px;
     line-height: 32px;
@@ -358,7 +387,7 @@ p {
 .quote {
   width: 90%;
   font-family: "Avenir-Bold";
-  font-size: 24px;
+  font-size: 32px;
   line-height: 32px;
 }
 
@@ -375,14 +404,10 @@ p {
   padding: 16px 8px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .footer {
     padding-left: 12.8%;
   }
-}
-
-.footer__heading {
-  font-family: "Avenir-Bold";
 }
 
 .footer__get-in-touch {
@@ -397,8 +422,10 @@ p {
   }
 }
 
-.footer__contact-card {
-  color: white;
+@media screen and (min-width: 1200px) {
+  .footer__get-in-touch {
+    width: 86%;
+  }
 }
 
 .footer__content {
@@ -412,22 +439,37 @@ p {
     display: flex;
     -webkit-box-pack: start;
         -ms-flex-pack: start;
-            justify-content: flex-start;
+            justify-content: start;
     -ms-flex-item-align: baseline;
         align-self: baseline;
   }
 }
 
 .footer__contact-card {
+  color: white;
   padding: 0;
-  width: 75%;
+  width: 70%;
+  margin: 32px 0;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__contact-card {
+    width: 75%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .footer__contact-card {
+    width: 20%;
+  }
 }
 
 .footer__text {
   color: white;
+  font-size: 16px;
 }
 
-@media screen and (min-width: 1024px) {
+@media screen and (min-width: 1200px) {
   .footer__text {
     font-size: 20px;
   }
@@ -440,21 +482,60 @@ p {
 .footer__heading {
   display: inline;
   margin: 0;
+  font-family: "Avenir-Bold";
+  width: 31%;
+}
+
+@media screen and (min-width: 768px) {
+  .footer__heading {
+    width: 53%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .footer__heading {
+    width: 31%;
+  }
 }
 
 .footer__socials {
-  display: inline;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0;
+  width: 40%;
 }
 
 @media screen and (min-width: 768px) {
   .footer__socials {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    width: 100px;
+    -ms-grid-column-align: center;
+        justify-self: center;
+    width: 15%;
+    padding-left: 3%;
+  }
+}
+
+.footer .wordmark-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0;
+}
+
+.footer .wordmark {
+  display: none;
+}
+
+@media screen and (min-width: 768px) {
+  .footer .wordmark {
+    display: inline;
   }
 }
 
@@ -462,7 +543,21 @@ p {
   color: white;
 }
 
-.wordmark {
-  display: none;
+@-webkit-keyframes nav-item-hover-effect {
+  0% {
+    color: #FAFAFA;
+  }
+  100% {
+    color: pink;
+  }
+}
+
+@keyframes nav-item-hover-effect {
+  0% {
+    color: #FAFAFA;
+  }
+  100% {
+    color: pink;
+  }
 }
 /*# sourceMappingURL=main.css.map */

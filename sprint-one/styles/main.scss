@@ -13,6 +13,8 @@ body, html {
     padding: 0;
 }
 
+// Hero section
+
 .hero {
     background-image: url('../assets/images/hero-img.jpg');
     background-position: center;
@@ -24,7 +26,7 @@ body, html {
 
 
     @include tablet {
-        height: 45vh;
+        height: 70vh;
     }
 
     @include desktop {
@@ -32,7 +34,7 @@ body, html {
     }
 
     &__header {
-        font-size: $size4;
+        font-size: $size3;
         font-family: $bold;
         width: 75%;
         color: white;
@@ -49,7 +51,7 @@ body, html {
             padding: 16% 12%;
             font-size: $size7;
             line-height: $size8;
-            width: 50%
+            width: 50%;
         }
     }
 
@@ -163,23 +165,43 @@ p {
         padding-bottom: 16px;
         font-size: $size1;
         font-family: $regular;
+        transform: scale(1);
+        transition-duration: 0.4s;
+
         &--active {
             border-bottom: 4px solid white;
         };
 
+
+
         @include tablet(){
             flex-grow: 0;
             margin-left: 64px;
+            transition-duration: 0.4s;
         }
 
         @include desktop(){
-            font-size: 16px
+            font-size: 16px;
         }
     }
 
     &__link {
         text-decoration: none;
         color: $gray-1;
+        transform: scale(1);
+        transition-duration: 0.4s;
+
+        .nav__item:hover & {
+            transform: scale(1.9);
+            color: pink;
+            animation:nav-item-hover-effect 0.3s linear infinite alternate;
+            transition-duration: 0.4s;
+        }
+    }
+
+    .logo-link {
+        display: flex;
+        align-items: flex-end;
     }
 }
 
@@ -266,7 +288,7 @@ p {
 .quote {
     width: 90%;
     font-family: $bold;
-    font-size: $size3;
+    font-size: $size4;
     line-height: $size4;
 }
 
@@ -288,37 +310,47 @@ p {
         padding-left: 12.8%
     }
 
-    &__heading {
-        font-family: $bold;
-    }
-
     &__get-in-touch {
         padding: 0;
         @include tablet {
             display: flex;
+            // justify-content: space-between;
+        }
+
+
+        @include desktop {
+            width: 86%;
         }
     }
 
-    &__contact-card {
-        color: white;
-    }
 
     &__content {
         padding: 0;
         @include tablet {
             display: flex;
-            justify-content: flex-start;
+            justify-content: start;
             align-self: baseline;
         }
     }
 
     &__contact-card {
+        color: white;
         padding: 0;
-        width: 75%;
+        width: 70%;
+        margin: 32px 0;
+        
+        @include tablet {
+            width: 75%;
+        }
+
+        @include desktop {
+            width: 20%;
+        }
     }
 
     &__text {
         color: white;
+        font-size: 16px;
 
         @include desktop{
             font-size: $size2;
@@ -332,21 +364,60 @@ p {
     &__heading {
         display: inline;
         margin: 0;
-    }
-    &__socials {
-        display: inline;
+        font-family: $bold;
+        width: 31%;
+
         @include tablet {
-            display: flex;
-            justify-content: space-between;
-            width: 100px;
+            width: 53%
+        }
+
+        @include desktop {
+            width: 31%
         }
     }
+
+    &__socials {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        width: 40%;
+        @include tablet {
+            justify-self: center;
+            width: 15%;
+            padding-left: 3%;
+        }
+    }
+
+    .wordmark-container {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        padding: 0;
+    }
+
+    .wordmark {
+        display: none;
+        @include tablet {
+            display: inline;
+        }
+    }
+    
 
     .copyright {
         color: white;
     }
 }
 
-.wordmark {
-    display: none;
+
+// Animation
+
+@keyframes nav-item-hover-effect{
+    0% {
+        color: $gray-1;
+    }
+
+
+    100% {
+        color: pink
+    }
 }
