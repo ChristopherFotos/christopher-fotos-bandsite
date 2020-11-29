@@ -16,6 +16,24 @@
   font-weight: normal;
 }
 
+@font-face {
+  font-family: Avenir-Bold;
+  src: url(../assets/fonts/Avenir-Bold.otf);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: Avenir-Demi;
+  src: url(../assets/fonts/Avenir-Demi.otf);
+  font-weight: medium;
+}
+
+@font-face {
+  font-family: Avenir-Regular;
+  src: url(../assets/fonts/Avenir-regular.otf);
+  font-weight: normal;
+}
+
 div, section, article, footer {
   padding: 0 16px;
 }
@@ -487,7 +505,7 @@ p {
   font-size: 15px;
 }
 
-.comments__date {
+.comments__date, .show-card__heading {
   font-family: "Avenir-Regular";
   color: #afafaf;
   font-size: 15px;
@@ -542,10 +560,6 @@ p {
   border-bottom: 1px solid #e1e1e1;
   -webkit-transition: 0.7s;
   transition: 0.7s;
-}
-
-.comments__inner-container {
-  width: 100%;
 }
 
 .comments #comment-input {
@@ -736,4 +750,17 @@ p {
   -webkit-transition: 0.7s;
   transition: 0.7s;
 }
-/*# sourceMappingURL=main.css.map */
+
+.shows {
+  padding: 0;
+}
+
+.show-card {
+  padding: 16px 0;
+  border-bottom: 2px solid #e1e1e1;
+}
+
+.show-card__text--bold {
+  font-family: "Avenir-Bold";
+}
+/*# sourceMappingURL=shows.css.map */

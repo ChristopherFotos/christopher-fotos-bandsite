@@ -304,6 +304,15 @@ p {
 .comments {
     padding-bottom: 30px;
 
+    @include tablet{
+        display: flex;
+        flex-direction: column;
+        margin: 0 auto;
+        width: 50%;
+        align-content: center;
+    }
+
+
     &__avatar {
         justify-self: flex-start;
         width: 90px;
@@ -316,12 +325,19 @@ p {
         padding: 0;
     }
 
+    &__label {
+        font-family: $regular;
+        font-size: $size1;
+        color: $gray-3;
+    }
+
     &__avatar {
         align-self: flex-start;
     }
 
     &__form {
-        flex-grow: 2
+        flex-grow: 2;
+        padding-right: 8px
     }
 
     &__input {
@@ -330,11 +346,31 @@ p {
         width: 100%;
         display: block;
         margin: 20px 0;
+        transition: border 0.4s ease-in-out;
 
         &:focus {
             border: 2px solid #323232;
             outline:none;
+            transition: border 0.4s ease-in-out
         }
+    }
+
+    &__meta {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    &__name {
+        font-family: $bold;
+        color: #323232;
+        font-size: 15px;
+    }
+
+    &__date {
+        font-family: $regular;
+        color: $gray-3;
+        font-size: 15px;
     }
 
     &__button {
@@ -349,6 +385,13 @@ p {
 
     &__list{
         padding: 32px 0;
+        width: 100%;
+
+        @include tablet {
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+        }
     }
 
     &__meta {
@@ -356,19 +399,37 @@ p {
     }
 
     &__text {
-        padding: 0
-    }
-
-    &__content{
-        display: flex;
         padding: 0;
+        width: 100%;
     }
 
-    #comments__text-input {
+    &__content {
+        display: flex;
+        // flex-direction:column;
+        width: 100%;
+        padding: 24px 0;
+        border-top: 1px solid $gray-2;
+        border-bottom: 1px solid $gray-2;
+        transition:  0.7s;
+    }
+
+    &__inner-container {
+        width: 100%
+    }
+
+    #comment-input {
         height: 120px
     }
+}
 
-
+.action-button{
+    width: 100%;
+    padding: 1rem 0;
+    border-radius: 4px;
+    border: none;
+    background-color: #323232;
+    color: $gray-2;
+    font-family: $medium;
 }
 
 // Footer
@@ -491,4 +552,14 @@ p {
     100% {
         color: pink
     }
+}
+
+.invisible {
+    opacity: 0;
+    transition: opacity 0.7s;
+}
+
+.fade-in {
+    opacity: 1;
+    transition: 0.7s;
 }

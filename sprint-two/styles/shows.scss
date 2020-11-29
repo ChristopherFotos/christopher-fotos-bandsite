@@ -1,0 +1,24 @@
+@import 'fonts'         ;
+@import 'font-variables';
+@import 'colors'        ;
+@import 'mixins'        ;
+@import './main.scss'   ;
+
+.shows {
+    padding: 0;
+}
+
+.show-card {
+    padding: 16px 0;
+    border-bottom: 2px solid $gray-2;
+
+    &__heading{
+        @extend .comments__date;
+    }
+
+    &__text{
+        &--bold {
+            font-family: $bold;
+        }
+    }
+}
