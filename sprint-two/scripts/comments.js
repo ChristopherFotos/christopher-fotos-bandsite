@@ -22,17 +22,7 @@ let commentsArray = [
 ]
 
 
-// Create a comment object using the values from the form inputs
-function makeCommentObject(){
-    let comment     = {}
-    comment.name    = nameInput.value
-    comment.comment = commentInput.value
-    return comment
-}
-
-// Create an element, apply a class of comments__content to it, set its innerHTML,
-// and then append it to the comment container 
-
+// create comment element
 function displayComment(comment){
     let commentDiv = document.createElement('div');
     commentDiv.classList.add('comments__content');
@@ -72,32 +62,22 @@ function displayComment(comment){
     commentP.classList.add('comments__p');
     commentP.innerText = comment.comment;
     commentBody.appendChild(commentP);
-
-
-    // newComment.innerHTML= 
-            // `
-            // <img src="./assets/images/avatars/1.jpg" alt="" class="comments__avatar">
-
-            // <div class="comments__text">
-            //     <div class="comments__meta">
-            //     <span class="comments__name">${comment.name}</span>
-            //     <span class="comments__date"> Date</span>
-            // </div>
-
-            // <div class="comments__text">
-            //     <p class="comments__p">
-            //         ${comment.comment}
-            //     </p>
-            // </div>
-            
-            // </div>
-
-            // </div>`
-
     
     commentContainer.appendChild(commentDiv)
 }
 
+// Render default comments to the screen
+commentsArray.forEach(c => displayComment(c))
+
+// Create a comment object using the values from the form inputs
+function makeCommentObject(){
+    let comment     = {}
+    comment.name    = nameInput.value
+    comment.comment = commentInput.value
+    return comment
+}
+
+// Clear the comments from the screen, create a new comment and add it to the array, 
 function submitComment(){
     commentContainer.innerHTML = '';
     commentsArray.unshift(makeCommentObject())
@@ -106,9 +86,9 @@ function submitComment(){
     commentsArray.forEach(c => displayComment(c))
 }
 
+// Add event listener to button
 submitButton.addEventListener('click', e => {
     e.preventDefault()
     submitComment()
 })
 
-commentsArray.forEach(c => displayComment(c))
