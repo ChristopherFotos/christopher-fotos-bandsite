@@ -1,23 +1,38 @@
 let shows = [
     {
-        date: '11/02/2020',
-        venue: 'El Mocambo',
-        location: 'Toronto, ON'
+        date: 'Mon Dec 17 2018',
+        venue: 'Ronald Lane',
+        location: 'San Francisco, California'
     },
     {
-        date: '11/02/2020',
-        venue: 'El Mocambo',
-        location: 'Toronto, ON'
+        date: 'Tue Jul 18 2019',
+        venue: 'Pier 3 East',
+        location: 'San Francisco, California'
     },
     {
-        date: '11/02/2020',
-        venue: 'El Mocambo',
-        location: 'Toronto, ON'
+        date: 'Sat Aug 12 2019',
+        venue: 'Hyatt Agency',
+        location: 'San Francisco, California'
     },
     {
-        date: '11/02/2020',
-        venue: 'El Mocambo',
-        location: 'Toronto, ON'
+        date: 'Fri Sep 05 2019',
+        venue: 'Moscow Center',
+        location: 'San Francisco, California'
+    },
+    {
+        date: 'Wed Aug 11 2019',
+        venue: 'Pres Club',
+        location: 'San Francisco, California'
+    },
+    {
+        date: 'Fri Sep 05 2019',
+        venue: 'Moscow Center',
+        location: 'San Francisco, California'
+    },
+    {
+        date: 'Fri Sep 05 2019',
+        venue: 'Moscow Center',
+        location: 'San Francisco, California'
     }
 ]
 
@@ -76,7 +91,6 @@ shows.forEach(show =>{
     // button
     let btnDiv = document.createElement('div')
     btnDiv.classList.add('show-card__button')
-
     let btn = document.createElement('button')
     btn.classList.add('action-button')
     btn.innerText = 'BUY TICKETS NOW'
@@ -84,39 +98,7 @@ shows.forEach(show =>{
 
     showCard.appendChild(btnDiv)
 
-
-
-    
-
-   
-
-
-    // showCard.innerHTML = `
-    // <div class="show-card__date">
-    //     <span class="show-card__heading">DATE</span>
-    //     <p class="show-card__text show-card__text--bold"> 
-    //         ${show.date}
-    //     </p>
-    // </div>
-
-    // <div class="show-card__venue">
-    //     <span class="show-card__heading">VENUE</span>
-    //     <p class="show-card__text ">
-    //         ${show.vanue}
-    //     </p>
-    // </div>  
-
-    // <div class="show-card__location">
-    //     <span class="show-card__heading">LOCATION</span>
-    //     <p class="show-card__text">
-    //         ${show.location}
-    //     </p>
-    // </div>
-    // <div class="show-card__button">
-    //     <button class="action-button">BUY TICKETS NOW</button>
-    // </div>
-    // `
-
-    let container = document.getElementById('shows')
+    // get container and append showcard to it
+    let container = document.getElementById('shows__table')
     container.appendChild(showCard)
 })

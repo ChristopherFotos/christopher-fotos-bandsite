@@ -48,10 +48,15 @@ body, html {
         }
 
         @include desktop {
-            padding: 16% 12%;
+            padding: 0;
+            margin: 10% 10%;
             font-size: $size7;
             line-height: $size8;
             width: 50%;
+        }
+
+        &--shows {
+            padding: 0;
         }
     }
 
@@ -347,6 +352,9 @@ p {
         display: block;
         margin: 20px 0;
         transition: border 0.4s ease-in-out;
+        background-color: $gray-1;
+        padding: 1rem;
+        font-family: $regular;
 
         &:focus {
             border: 2px solid #323232;
