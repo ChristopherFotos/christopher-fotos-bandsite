@@ -3,28 +3,11 @@ let commentInput     = document.getElementById('comment-input');
 let commentContainer = document.getElementById('comment-container');
 let submitButton     = document.getElementById('add-comment');
 
-let commentsArray = [
-    {
-        name: 'John Candy',
-        comment: 'Great energy. Love seeing these guys live.',
-        timestamp: new Date()
-    },
-    {
-        name: 'John Wayne',
-        comment: 'Their last album was 3/10 at best. They\'re sellouts now.',
-        timestamp: new Date()
-    },
-    {
-        name: 'Jimmy Fallon',
-        comment: 'I have every single one of their records, even the b-sides. Not a bad song in their whole catalog.',
-        timestamp: new Date()
-    }
-]
 
 
 // create comment element
 function displayComment(comment){
-    
+
     //create comment div
     let commentDiv = document.createElement('div');
     commentDiv.classList.add('comments__content');
@@ -78,7 +61,6 @@ function displayComment(comment){
 }
 
 // Render default comments to the screen
-commentsArray.forEach(c => displayComment(c))
 
 // Create a comment object using the values from the form inputs
 function makeCommentObject(){
@@ -103,3 +85,14 @@ submitButton.addEventListener('click', e => {
     submitComment()
 })
 
+// declare a variable to hold the comments returned from axios GET request
+let commentsArray; 
+
+// make axios GET request
+axios.get(`${_URL}comments?api_key=${API_KEY}`)
+    .then(res => {
+        commentsArray = res.data 
+        console.log(commentsArray)
+        commentsArray.forEach(c => displayComment(c))
+    })
+    .catch(err => console.log(err))

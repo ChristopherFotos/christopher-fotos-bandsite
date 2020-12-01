@@ -1,0 +1,124 @@
+@import 'fonts'         ;
+@import 'font-variables';
+@import 'colors'        ;
+@import 'mixins'        ;
+@import './main.scss'   ;
+
+body{
+    overflow-x: hidden;
+}
+
+.hero {
+    height: 80vh;
+    @include desktop {
+        height: 100vh
+    }
+}
+
+.hero__header-container--shows {
+    @extend .hero__header-container;
+    @include desktop {
+        display: flex;
+        align-items: center;
+    }
+    background-image: url('../assets/images/shows-banner.jpg');
+    background-position: center;
+}
+
+.hero__header--small-padding {
+    // padding-top: 20% 0 0 0 !important;
+    font-size: $size5;
+
+    @include tablet {
+        font-size: 90px;
+        // padding-top: 10%
+    }
+}
+
+.soundcloud {
+    width: 98%;
+    height: 15%;
+    align-self: center;
+    padding: 0;
+}
+
+#shows {
+    padding: 0;
+    @include desktop {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 12.8%;
+        width: 78%;
+
+        &__table {
+           width: 80%;
+        }
+
+        .shows__heading {
+            padding-left: 0;
+            margin: 16px;
+            width: 20%
+        }
+    }
+
+    &__heading {
+        padding-left: 0;
+    }
+
+    // width: 100%;
+}
+
+.shows__heading-container {
+    display: none;
+    @include tablet {
+        display: flex;
+        justify-content: space-between;
+        font-family: $regular;
+        color: $gray-3;
+        padding: 0;
+    }
+}
+
+.placeholder {
+    width: 150px
+}
+
+.show-card {
+    padding: 16px 0;
+    border-bottom: 2px solid $gray-2;
+    @include tablet {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        .action-button {
+            padding: 1rem 1rem
+        }
+    }
+
+    &__heading{
+        @extend .comments__date;
+        @include tablet {
+            display: none;
+        }
+    }
+
+    &__text{
+        &--bold {
+            font-family: $bold;
+        }
+    }
+
+
+    &__date {
+        padding: 0;
+    }
+
+    &__venue{
+        padding: 0
+    }
+
+    &__location{
+        padding: 0
+    }
+    
+}
