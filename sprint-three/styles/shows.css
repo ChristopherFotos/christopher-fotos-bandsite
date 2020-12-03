@@ -895,13 +895,16 @@ body {
 
 .show-card__date {
   padding: 0;
+  width: 25%;
 }
 
 .show-card__venue {
   padding: 0;
+  width: 25%;
 }
 
 .show-card__location {
   padding: 0;
+  width: 25%;
 }
 /*# sourceMappingURL=shows.css.map */
