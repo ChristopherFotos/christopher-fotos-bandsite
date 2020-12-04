@@ -1,3 +1,27 @@
+/* create the show table container and header, and label row */
+let showsTable = document.createElement('div')
+showsTable.id = 'shows__table'
+let headingContainer = document.createElement('div')
+headingContainer.classList.add('shows__heading-container')
+
+let labels     = ['DATE', 'VENUE', 'LOCATION', '']
+labels.forEach(label => {
+    let newSpan = document.createElement('span')
+    newSpan.classList.add("show-card__heading--top")
+    newSpan.classList.add("show-card__heading--top")
+    newSpan.innerText = label
+    headingContainer.appendChild(newSpan)
+})
+
+let section = document.getElementById('shows')
+let heading = document.createElement('h3')
+heading.classList.add('heading', 'shows__heading')
+heading.innerText = 'Shows'
+section.appendChild(heading)
+
+showsTable.appendChild(headingContainer)
+section.appendChild(showsTable)
+
 /* Make GET request to /comments, loop through the arry that it returns*/
 axios.get(`${_URL}showdates?api_key=${API_KEY}`)
     .then( res=>{

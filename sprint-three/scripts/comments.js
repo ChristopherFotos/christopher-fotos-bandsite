@@ -3,8 +3,6 @@ let commentInput     = document.getElementById('comment-input');
 let commentContainer = document.getElementById('comment-container');
 let submitButton     = document.getElementById('add-comment');
 
-
-
 /* displayComment function creates an HTML comment component */
 function displayComment(comment){
 
@@ -80,6 +78,8 @@ function submitComment(){
       })
       .then(() => {
         return axios.get(`${_URL}comments?api_key=${API_KEY}`)
+
+
       })
       .then(res => {
         console.log(res)
