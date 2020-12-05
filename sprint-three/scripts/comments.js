@@ -1,7 +1,7 @@
-let nameInput        = document.getElementById('comments__name-input');
-let commentInput     = document.getElementById('comment-input');
-let commentContainer = document.getElementById('comment-container');
-let submitButton     = document.getElementById('add-comment');
+let nameInput              = document.getElementById('comments__name-input');
+let commentInput           = document.getElementById('comment-input');
+let commentContainer       = document.getElementById('comment-container');
+let submitButton           = document.getElementById('add-comment');
 
 /* this function will be called in the delete button's event listener */
 function deleteFunction(e){
@@ -16,16 +16,36 @@ function deleteFunction(e){
             .catch(err => console.error(err))
 }
 
-/* this function will be called in the like button's event listener */
+/* this function will be called in the like button's event listener. */
 function likeFunction(e){
-    if(true === false) return
-    let likes     = parseInt(e.target.parentNode.parentNode.dataset.likes)
-    likes += 1
-    e.target.parentNode.parentNode.dataset.likes = likes
-    let likesSpan = e.target.parentNode.previousSibling
-    likesSpan.innerText = `${likes} likes`    
 
-    axios.put(`${_URL}/comments/${e.target.parentNode.dataset.id}/like?api_key${API_KEY}`)
+    /* NOTE: you might get a CORS error when this function runs. disabling CORS in chrome will resolve this issue. instructions: https://bit.ly/3lUlJHP*/
+
+    let likedComments;
+
+    if(localStorage.likedComments){
+        likedComments = JSON.parse(localStorage.likedComments)
+        if(likedComments.find(id => id === e.target.dataset.commentId)) {
+            return
+        }
+    } else {
+        likedComments = []
+        localStorage.likedComments = JSON.stringify([])
+    }
+
+    if(e.target.classList.contains('comments__like-icon')){
+        likedComments.push(e.target.dataset.commentId)
+        localStorage.likedComments = JSON.stringify(likedComments)
+        
+        let likes = parseInt(e.target.parentNode.parentNode.dataset.likes)
+        likes += 1
+        e.target.parentNode.parentNode.dataset.likes = likes
+        let likesSpan = e.target.parentNode.previousSibling
+        likesSpan.innerText = `${likes} likes`  
+
+        axios.put(`${_URL}comments/${e.target.dataset.commentId}/like?api_key=${API_KEY}`)
+    }
+    
 }
 
 /* displayComment function accepts a Comment object and uses it to create an HTML comment component.*/
@@ -81,7 +101,6 @@ function displayComment(comment){
     commentP.classList.add('comments__p');
     commentP.innerText = comment.comment;
     commentBody.appendChild(commentP);
-    
 
     /* displayComment function: create button container and buttons*/
     let spanInfo = [
@@ -101,6 +120,11 @@ function displayComment(comment){
         span.innerHTML = s.text
         span.dataset.commentId = comment.id
         buttonContainer.appendChild(span)
+
+        if(span.firstChild.classList){
+            span.firstChild.dataset.commentId = comment.id
+            console.log(span.firstChild.classList)
+        }
 
         if(s.function){
             span.addEventListener('click', s.function)
