@@ -3,6 +3,31 @@ let commentInput     = document.getElementById('comment-input');
 let commentContainer = document.getElementById('comment-container');
 let submitButton     = document.getElementById('add-comment');
 
+/* this function will be called in the delete button's event listener */
+function deleteFunction(e){
+    console.log(e.target)
+        axios.delete(`${_URL}comments/${e.target.dataset.commentId}?api_key=${API_KEY}`)
+            .then(() =>  axios.get(`${_URL}comments?api_key=${API_KEY}`))
+            .then(res => {
+                    let newestFirst = res.data.reverse()
+                    commentContainer.innerHTML = '';
+                    newestFirst.forEach(c => displayComment(c))
+                })
+            .catch(err => console.error(err))
+}
+
+/* this function will be called in the like button's event listener */
+function likeFunction(e){
+    if(true === false) return
+    let likes     = parseInt(e.target.parentNode.parentNode.dataset.likes)
+    likes += 1
+    e.target.parentNode.parentNode.dataset.likes = likes
+    let likesSpan = e.target.parentNode.previousSibling
+    likesSpan.innerText = `${likes} likes`    
+
+    axios.put(`${_URL}/comments/${e.target.parentNode.dataset.id}/like?api_key${API_KEY}`)
+}
+
 /* displayComment function accepts a Comment object and uses it to create an HTML comment component.*/
 function displayComment(comment){
 
@@ -60,70 +85,32 @@ function displayComment(comment){
 
     /* displayComment function: create button container and buttons*/
     let spanInfo = [
-        {class:'comments__delete-button', text:'delete'},
-        {class:'comments__likes', text:`${comment.likes} likes`},
-        {class:'comments__like-button', text:`<img src="./assets/images/like.png" class='comments__like-icon' alt="like button">`}
+        {class:'comments__delete-button', text:'delete', function: deleteFunction},
+        {class:'comments__likes', text:`${comment.likes} likes`, function: null},
+        {class:'comments__like-button', text:`<img src="./assets/images/like.png" class='comments__like-icon' alt="like button">`, function: likeFunction}
     ]
 
     let buttonContainer = document.createElement('div')
     buttonContainer.dataset.likes = Number(comment.likes)
     commentBody.appendChild(buttonContainer)
     buttonContainer.classList.add('comments__button-container')
+
     spanInfo.forEach(s=>{
         let span = document.createElement('span')
         span.classList.add(s.class)
         span.innerHTML = s.text
         span.dataset.commentId = comment.id
         buttonContainer.appendChild(span)
+
+        if(s.function){
+            span.addEventListener('click', s.function)
+        }
     })
-    addButtonListeners() // just add listener here to prevent multiple listeners being added to the same element
 
     /* displayComment function: append the newly created comment div to the comments container */
     commentContainer.appendChild(commentDiv)
 
 } /* END displayComment function */ 
-
-
-/* add event listeners to delete buttons.*/
-function addButtonListeners(){
-
-    let deleteButtons = Array.from(document.getElementsByClassName('comments__delete-button'))
-    let likeButtons = Array.from(document.getElementsByClassName('comments__like-button'))
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', e => {
-            console.log(e.target)
-            axios.delete(`${_URL}comments/${e.target.dataset.commentId}?api_key=${API_KEY}`)
-                .then(() =>  axios.get(`${_URL}comments?api_key=${API_KEY}`))
-                .then(res => {
-                        let newestFirst = res.data.reverse()
-                        commentContainer.innerHTML = '';
-                        newestFirst.forEach(c => displayComment(c))
-                    })
-                .catch(err => console.error(err))
-        })
-    })
-
-    likeButtons.forEach(button => {
-        button.addEventListener('click', e=>{
-            if(true === false) return
-
-            // it's working as intended, now we just have to fix the multiple event lisenter problem 
-            let likes     = parseInt(e.target.parentNode.parentNode.dataset.likes)
-            likes += 1
-            e.target.parentNode.parentNode.dataset.likes = likes
-
-            let likesSpan = e.target.parentNode.previousSibling
-
-            console.log(likesSpan)
-
-            
-            likesSpan.innerText = `${likes} likes`
-        })
-    })
-}
-
-let pressed = 0;
 
 
 /* Comment constructor function */
@@ -150,7 +137,7 @@ function submitComment(){
         commentInput.value = ''; 
         let newestFirst = res.data.reverse()
         newestFirst.forEach(c => displayComment(c))
-        addButtonListeners()
+        // addButtonListeners()
     })
     .catch(err => console.log(err))
 }
@@ -166,7 +153,7 @@ axios.get(`${_URL}comments?api_key=${API_KEY}`)
      .then(res => {
         let newestFirst = res.data.reverse()
         newestFirst.forEach(c => displayComment(c))
-        addButtonListeners()
+        // addButtonListeners()
         })
      .catch(err => console.error(err))
     
