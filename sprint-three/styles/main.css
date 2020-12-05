@@ -495,6 +495,60 @@ p {
   font-size: 15px;
 }
 
+.comments__button-container {
+  padding: 0;
+}
+
+.comments__likes {
+  font-family: "Avenir-Regular";
+  color: #afafaf;
+  cursor: pointer;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__likes:hover {
+  color: #525252;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__like-button {
+  font-family: "Avenir-Regular";
+  color: #afafaf;
+  cursor: pointer;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__like-button:hover {
+  color: #525252;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__like-icon {
+  width: 15px;
+  height: 15px;
+  padding-left: 10px;
+}
+
+.comments__delete-button {
+  margin-left: auto;
+  margin-right: 8px;
+  font-family: "Avenir-Regular";
+  color: #afafaf;
+  cursor: pointer;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__delete-button:hover {
+  color: #525252;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
 .comments__date {
   font-family: "Avenir-Regular";
   color: #afafaf;

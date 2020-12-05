@@ -3,12 +3,13 @@ let commentInput     = document.getElementById('comment-input');
 let commentContainer = document.getElementById('comment-container');
 let submitButton     = document.getElementById('add-comment');
 
-/* displayComment function creates an HTML comment component */
+/* displayComment function accepts a Comment object and uses it to create an HTML comment component.*/
 function displayComment(comment){
 
     /* displayComment function: create comment div */
     let commentDiv = document.createElement('div');
     commentDiv.classList.add('comments__content');
+    commentDiv.dataset.id = comment.id;
 
     /* displayComment function: create avatar and append it to comment div */
     let commentImg = document.createElement('img');
@@ -56,38 +57,100 @@ function displayComment(comment){
     commentP.innerText = comment.comment;
     commentBody.appendChild(commentP);
     
+
+    /* displayComment function: create button container and buttons*/
+    let spanInfo = [
+        {class:'comments__delete-button', text:'delete'},
+        {class:'comments__likes', text:`${comment.likes} likes`},
+        {class:'comments__like-button', text:`<img src="./assets/images/like.png" class='comments__like-icon' alt="like button">`}
+    ]
+
+    let buttonContainer = document.createElement('div')
+    buttonContainer.dataset.likes = Number(comment.likes)
+    commentBody.appendChild(buttonContainer)
+    buttonContainer.classList.add('comments__button-container')
+    spanInfo.forEach(s=>{
+        let span = document.createElement('span')
+        span.classList.add(s.class)
+        span.innerHTML = s.text
+        span.dataset.commentId = comment.id
+        buttonContainer.appendChild(span)
+    })
+    addButtonListeners() // just add listener here to prevent multiple listeners being added to the same element
+
     /* displayComment function: append the newly created comment div to the comments container */
     commentContainer.appendChild(commentDiv)
 
 } /* END displayComment function */ 
 
-/* Create a comment object using the values from the form inputs */
-function makeCommentObject(){
-    let comment     = {}
-    comment.name    = nameInput.value
-    comment.comment = commentInput.value
-    return comment
+
+/* add event listeners to delete buttons.*/
+function addButtonListeners(){
+
+    let deleteButtons = Array.from(document.getElementsByClassName('comments__delete-button'))
+    let likeButtons = Array.from(document.getElementsByClassName('comments__like-button'))
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', e => {
+            console.log(e.target)
+            axios.delete(`${_URL}comments/${e.target.dataset.commentId}?api_key=${API_KEY}`)
+                .then(() =>  axios.get(`${_URL}comments?api_key=${API_KEY}`))
+                .then(res => {
+                        let newestFirst = res.data.reverse()
+                        commentContainer.innerHTML = '';
+                        newestFirst.forEach(c => displayComment(c))
+                    })
+                .catch(err => console.error(err))
+        })
+    })
+
+    likeButtons.forEach(button => {
+        button.addEventListener('click', e=>{
+            if(true === false) return
+
+            // it's working as intended, now we just have to fix the multiple event lisenter problem 
+            let likes     = parseInt(e.target.parentNode.parentNode.dataset.likes)
+            likes += 1
+            e.target.parentNode.parentNode.dataset.likes = likes
+
+            let likesSpan = e.target.parentNode.previousSibling
+
+            console.log(likesSpan)
+
+            
+            likesSpan.innerText = `${likes} likes`
+        })
+    })
 }
 
+let pressed = 0;
+
+
+/* Comment constructor function */
+function Comment(name, comment){
+    this.name    = name
+    this.comment = comment
+}
+
+
 /* Clear the comments from the screen, create a new comment and add it to the array, */
+
 function submitComment(){
     axios({
         method: 'post',
         url: `${_URL}comments?api_key=${API_KEY}`,
-        data: makeCommentObject()
+        data: new Comment(nameInput.value, commentInput.value)
       })
       .then(() => {
         return axios.get(`${_URL}comments?api_key=${API_KEY}`)
-
-
       })
       .then(res => {
-        console.log(res)
         commentContainer.innerHTML = '';
         nameInput.value = ''
         commentInput.value = ''; 
         let newestFirst = res.data.reverse()
         newestFirst.forEach(c => displayComment(c))
+        addButtonListeners()
     })
     .catch(err => console.log(err))
 }
@@ -98,13 +161,12 @@ submitButton.addEventListener('click', e => {
     submitComment()
 })
 
-
 /* make axios GET request to append default comments to the page */
-
 axios.get(`${_URL}comments?api_key=${API_KEY}`)
      .then(res => {
         let newestFirst = res.data.reverse()
         newestFirst.forEach(c => displayComment(c))
+        addButtonListeners()
         })
      .catch(err => console.error(err))
     
