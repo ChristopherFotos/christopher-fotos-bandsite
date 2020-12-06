@@ -5,12 +5,19 @@ let headingContainer = document.createElement('div')
 headingContainer.classList.add('shows__heading-container')
 
 let labels     = ['DATE', 'VENUE', 'LOCATION', '']
-labels.forEach(label => {
-    let newSpan = document.createElement('span')
-    newSpan.classList.add("show-card__heading--top")
-    newSpan.classList.add("show-card__heading--top")
-    newSpan.innerText = label
-    headingContainer.appendChild(newSpan)
+labels.forEach((label, i) => {
+    let newDiv  = document.createElement('div')
+    newDiv.classList.add('show-card__label-wrapper')
+
+    if(i == 3) newDiv.classList.add('show-card__label-wrapper__placeholder')
+    
+    let newP = document.createElement('p')
+    newP.classList.add("show-card__heading--top")
+    newP.classList.add("show-card__heading--top")
+    newP.innerText = label
+
+    newDiv.appendChild(newP)
+    headingContainer.appendChild(newDiv)
 })
 
 let section = document.getElementById('shows')

@@ -423,6 +423,11 @@ p {
   }
 }
 
+.comments__heading {
+  padding-left: 12%;
+  font-size: 48px;
+}
+
 .comments__avatar {
   justify-self: flex-start;
   width: 90px;
@@ -461,7 +466,7 @@ p {
 .comments__input {
   border: 2px solid #e1e1e1;
   border-radius: 5px;
-  width: 100%;
+  width: 95%;
   display: block;
   margin: 20px 0;
   -webkit-transition: border 0.4s ease-in-out;
@@ -615,6 +620,13 @@ p {
   font-family: "Avenir-Demi";
 }
 
+@media screen and (min-width: 768px) {
+  .action-button {
+    width: 30%;
+    margin-left: 70%;
+  }
+}
+
 .footer {
   background-color: #323232;
   color: white;
@@ -692,7 +704,7 @@ p {
   }
 }
 
-.footer__text--bold {
+.footer__text--emphasis {
   font-family: "Avenir-Demi";
 }
 

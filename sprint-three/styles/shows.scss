@@ -95,11 +95,27 @@ body{
         }
     }
 
+  
+
     &__heading{
         @extend .comments__date;
         @include tablet {
             display: none;
         }
+    }
+
+    &__label-wrapper{
+        padding: 0;
+        width: 15%;
+
+        &__placeholder {
+            width: 185px
+        }
+    }
+
+    &__heading--top{
+        @extend .comments__date;
+        // align-self: center;
     }
 
     &__text{

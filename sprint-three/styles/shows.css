@@ -479,7 +479,7 @@ p {
 .comments__input {
   border: 2px solid #e1e1e1;
   border-radius: 5px;
-  width: 100%;
+  width: 95%;
   display: block;
   margin: 20px 0;
   -webkit-transition: border 0.4s ease-in-out;
@@ -513,7 +513,52 @@ p {
   font-size: 15px;
 }
 
-.comments__date, .show-card__heading {
+.comments__button-container {
+  padding: 0;
+}
+
+.comments__likes {
+  font-family: "Avenir-Regular";
+  color: #afafaf;
+}
+
+.comments__like-button {
+  font-family: "Avenir-Regular";
+  color: #afafaf;
+  cursor: pointer;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__like-button:hover {
+  color: #525252;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__like-icon {
+  width: 15px;
+  height: 15px;
+  padding-left: 10px;
+}
+
+.comments__delete-button {
+  margin-left: auto;
+  margin-right: 8px;
+  font-family: "Avenir-Regular";
+  color: #afafaf;
+  cursor: pointer;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__delete-button:hover {
+  color: #525252;
+  -webkit-transition: color 0.4s;
+  transition: color 0.4s;
+}
+
+.comments__date, .show-card__heading, .show-card__heading--top {
   font-family: "Avenir-Regular";
   color: #afafaf;
   font-size: 15px;
@@ -665,7 +710,7 @@ p {
   }
 }
 
-.footer__text--bold {
+.footer__text--emphasis {
   font-family: "Avenir-Demi";
 }
 
@@ -887,6 +932,15 @@ body {
   .show-card__heading {
     display: none;
   }
+}
+
+.show-card__label-wrapper {
+  padding: 0;
+  width: 15%;
+}
+
+.show-card__label-wrapper__placeholder {
+  width: 185px;
 }
 
 .show-card__text--bold {

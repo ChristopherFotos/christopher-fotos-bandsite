@@ -8,16 +8,13 @@ function deleteFunction(e){
     console.log(e.target)
         axios.delete(`${_URL}comments/${e.target.dataset.commentId}?api_key=${API_KEY}`)
              .catch(err => console.error(err))
-
     let comment = document.getElementById(e.target.dataset.id)
     comment.remove()
 }
 
 /* this function will be called in the like button's event listener. */
 function likeFunction(e){
-
-    /* NOTE: you might get a CORS error when this function runs. disabling CORS in chrome will resolve this issue. instructions: https://bit.ly/3lUlJHP*/
-
+    
     let likedComments;
 
     if(localStorage.likedComments){
@@ -41,8 +38,7 @@ function likeFunction(e){
         likesSpan.innerText = `${likes} likes`  
 
         axios.put(`${_URL}comments/${e.target.dataset.commentId}/like?api_key=${API_KEY}`)
-    }
-    
+    }    
 }
 
 /* displayComment function accepts a Comment object and uses it to create an HTML comment component.*/
@@ -142,7 +138,6 @@ function Comment(name, comment){
 }
 
 /* Clear the comments from the screen, create a new comment and add it to the array, */
-
 function submitComment(){
     axios({
         method: 'post',

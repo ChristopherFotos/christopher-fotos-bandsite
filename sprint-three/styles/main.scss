@@ -317,6 +317,10 @@ p {
         align-content: center;
     }
 
+    &__heading {
+        padding-left: 12%;
+        font-size: 48px
+    }
 
     &__avatar {
         justify-self: flex-start;
@@ -348,7 +352,7 @@ p {
     &__input {
         border: 2px solid $gray-2;
         border-radius: 5px;
-        width: 100%;
+        width: 95%;
         display: block;
         margin: 20px 0;
         transition: border 0.4s ease-in-out;
@@ -479,6 +483,11 @@ p {
     background-color: #323232;
     color: $gray-2;
     font-family: $medium;
+
+    @include tablet {
+        width: 30%;
+        margin-left: 70%;
+    }
 }
 
 // Footer
@@ -537,7 +546,7 @@ p {
             font-size: $size2;
         }
 
-        &--bold {
+        &--emphasis {
             font-family: $medium;
         }
     }
