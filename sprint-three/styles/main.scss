@@ -382,13 +382,6 @@ p {
     &__likes {
         font-family: $regular;
         color: $gray-3;
-        cursor: pointer;
-        transition: color 0.4s;
-
-        &:hover{
-            color: #525252;
-            transition: color 0.4s;
-        }
     }
 
     &__like-button {

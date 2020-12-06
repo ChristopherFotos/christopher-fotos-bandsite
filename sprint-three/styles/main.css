@@ -502,15 +502,6 @@ p {
 .comments__likes {
   font-family: "Avenir-Regular";
   color: #afafaf;
-  cursor: pointer;
-  -webkit-transition: color 0.4s;
-  transition: color 0.4s;
-}
-
-.comments__likes:hover {
-  color: #525252;
-  -webkit-transition: color 0.4s;
-  transition: color 0.4s;
 }
 
 .comments__like-button {

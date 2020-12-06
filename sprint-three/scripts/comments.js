@@ -7,13 +7,10 @@ let submitButton           = document.getElementById('add-comment');
 function deleteFunction(e){
     console.log(e.target)
         axios.delete(`${_URL}comments/${e.target.dataset.commentId}?api_key=${API_KEY}`)
-            .then(() =>  axios.get(`${_URL}comments?api_key=${API_KEY}`))
-            .then(res => {
-                    let newestFirst = res.data.reverse()
-                    commentContainer.innerHTML = '';
-                    newestFirst.forEach(c => displayComment(c))
-                })
-            .catch(err => console.error(err))
+             .catch(err => console.error(err))
+
+    let comment = document.getElementById(e.target.dataset.id)
+    comment.remove()
 }
 
 /* this function will be called in the like button's event listener. */
@@ -49,12 +46,13 @@ function likeFunction(e){
 }
 
 /* displayComment function accepts a Comment object and uses it to create an HTML comment component.*/
-function displayComment(comment){
+function displayComment(comment, i){
 
     /* displayComment function: create comment div */
     let commentDiv = document.createElement('div');
     commentDiv.classList.add('comments__content');
     commentDiv.dataset.id = comment.id;
+    commentDiv.id = i
 
     /* displayComment function: create avatar and append it to comment div */
     let commentImg = document.createElement('img');
@@ -103,27 +101,27 @@ function displayComment(comment){
     commentBody.appendChild(commentP);
 
     /* displayComment function: create button container and buttons*/
+    let buttonContainer = document.createElement('div')
+    buttonContainer.dataset.likes = Number(comment.likes)
+    commentBody.appendChild(buttonContainer)
+    buttonContainer.classList.add('comments__button-container')
+
     let spanInfo = [
         {class:'comments__delete-button', text:'delete', function: deleteFunction},
         {class:'comments__likes', text:`${comment.likes} likes`, function: null},
         {class:'comments__like-button', text:`<img src="./assets/images/like.png" class='comments__like-icon' alt="like button">`, function: likeFunction}
     ]
 
-    let buttonContainer = document.createElement('div')
-    buttonContainer.dataset.likes = Number(comment.likes)
-    commentBody.appendChild(buttonContainer)
-    buttonContainer.classList.add('comments__button-container')
-
     spanInfo.forEach(s=>{
         let span = document.createElement('span')
         span.classList.add(s.class)
         span.innerHTML = s.text
         span.dataset.commentId = comment.id
+        span.dataset.id = i
         buttonContainer.appendChild(span)
 
         if(span.firstChild.classList){
             span.firstChild.dataset.commentId = comment.id
-            console.log(span.firstChild.classList)
         }
 
         if(s.function){
@@ -143,7 +141,6 @@ function Comment(name, comment){
     this.comment = comment
 }
 
-
 /* Clear the comments from the screen, create a new comment and add it to the array, */
 
 function submitComment(){
@@ -160,7 +157,7 @@ function submitComment(){
         nameInput.value = ''
         commentInput.value = ''; 
         let newestFirst = res.data.reverse()
-        newestFirst.forEach(c => displayComment(c))
+        newestFirst.forEach((c,i) => displayComment(c,i))
         // addButtonListeners()
     })
     .catch(err => console.log(err))
@@ -176,8 +173,7 @@ submitButton.addEventListener('click', e => {
 axios.get(`${_URL}comments?api_key=${API_KEY}`)
      .then(res => {
         let newestFirst = res.data.reverse()
-        newestFirst.forEach(c => displayComment(c))
+        newestFirst.forEach((c,i) => displayComment(c,i))
         // addButtonListeners()
         })
      .catch(err => console.error(err))
-    
