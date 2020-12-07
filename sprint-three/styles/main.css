@@ -424,8 +424,20 @@ p {
 }
 
 .comments__heading {
-  padding-left: 12%;
-  font-size: 48px;
+  font-size: 24px;
+  padding-left: 8px;
+}
+
+@media screen and (min-width: 768px) {
+  .comments__heading {
+    font-size: 48px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .comments__heading {
+    padding-left: 12%;
+  }
 }
 
 .comments__avatar {

@@ -318,8 +318,16 @@ p {
     }
 
     &__heading {
-        padding-left: 12%;
-        font-size: 48px
+        font-size: 24px;
+        padding-left: 8px;
+
+        @include tablet {
+            font-size: 48px
+        }
+
+        @include desktop {
+            padding-left: 12%;
+        }
     }
 
     &__avatar {

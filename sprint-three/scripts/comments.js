@@ -172,8 +172,8 @@ submitButton.addEventListener('click', e => {
 /* make axios GET request to append default comments to the page */
 axios.get(`${_URL}comments?api_key=${API_KEY}`)
      .then(res => {
-        let newestFirst = res.data.reverse()
-        newestFirst.forEach((c,i) => displayComment(c,i))
-        // addButtonListeners()
-        })
+        res.data.reverse()
+        res.data.forEach((c,i) => displayComment(c,i))
+        }
+        )
      .catch(err => console.error(err))
