@@ -463,6 +463,13 @@ p {
   padding-right: 8px;
 }
 
+@media screen and (min-width: 768px) {
+  .comments__form .action-button {
+    width: 30%;
+    margin-left: 70%;
+  }
+}
+
 .comments__input {
   border: 2px solid #e1e1e1;
   border-radius: 5px;
@@ -498,6 +505,7 @@ p {
   font-family: "Avenir-Bold";
   color: #323232;
   font-size: 15px;
+  margin-right: 16px;
 }
 
 .comments__button-container {
@@ -618,13 +626,6 @@ p {
   background-color: #323232;
   color: #e1e1e1;
   font-family: "Avenir-Demi";
-}
-
-@media screen and (min-width: 768px) {
-  .action-button {
-    width: 30%;
-    margin-left: 70%;
-  }
 }
 
 .footer {

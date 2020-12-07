@@ -441,6 +441,11 @@ p {
   }
 }
 
+.comments__heading {
+  padding-left: 12%;
+  font-size: 48px;
+}
+
 .comments__avatar {
   justify-self: flex-start;
   width: 90px;
@@ -631,6 +636,12 @@ p {
   background-color: #323232;
   color: #e1e1e1;
   font-family: "Avenir-Demi";
+}
+
+@media screen and (min-width: 768px) {
+  .action-button {
+    width: 100%;
+  }
 }
 
 .footer {

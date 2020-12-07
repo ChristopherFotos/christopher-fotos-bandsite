@@ -346,7 +346,14 @@ p {
 
     &__form {
         flex-grow: 2;
-        padding-right: 8px
+        padding-right: 8px;
+
+        .action-button {
+            @include tablet {
+                width: 30%;
+                margin-left: 70%
+            }
+        }
     }
 
     &__input {
@@ -377,6 +384,7 @@ p {
         font-family: $bold;
         color: #323232;
         font-size: 15px;
+        margin-right: 16px
     }
 
     &__button-container {
@@ -483,11 +491,6 @@ p {
     background-color: #323232;
     color: $gray-2;
     font-family: $medium;
-
-    @include tablet {
-        width: 30%;
-        margin-left: 70%;
-    }
 }
 
 // Footer

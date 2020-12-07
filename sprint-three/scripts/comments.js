@@ -1,7 +1,8 @@
-let nameInput              = document.getElementById('comments__name-input');
-let commentInput           = document.getElementById('comment-input');
-let commentContainer       = document.getElementById('comment-container');
-let submitButton           = document.getElementById('add-comment');
+let nameInput        = document.getElementById('comments__name-input');
+let commentInput     = document.getElementById('comment-input');
+let commentContainer = document.getElementById('comment-container');
+let submitButton     = document.getElementById('add-comment');
+let comments         = []
 
 /* this function will be called in the delete button's event listener */
 function deleteFunction(e){
@@ -17,12 +18,16 @@ function likeFunction(e){
     
     let likedComments;
 
+    /* check if localstorage.likedcomments exists */
     if(localStorage.likedComments){
+        /* if it does, parse it store it in the likedComments variable */
         likedComments = JSON.parse(localStorage.likedComments)
+        /* if the ID of the comment being liked is already in the likedComments array, return */
         if(likedComments.find(id => id === e.target.dataset.commentId)) {
             return
         }
     } else {
+        /* if localStorage.likedComments is undefined, set likedComments to an empty array */
         likedComments = []
         localStorage.likedComments = JSON.stringify([])
     }
